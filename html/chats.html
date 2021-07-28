@@ -6,35 +6,48 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>WhatsUp</title>
   <script defer src="http://localhost:3000/socket.io/socket.io.js"></script>
-  <script defer src="../script.js"></script>
+  <script defer src="http://localhost:3000/scriptChat"></script>
   <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 
 
 </head>
 <body class="text-center h-screen	">
 
-  <div class="flex">
-    <div class="bg-green-200 h-28 w-96">
-      <div id="personInfo" class="text-gray-400 text-3xl font-bold">
-          <a href="#" class="cursor-pointer">
-              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user block m-auto" width="58" height="58" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
-              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-              <circle cx="12" cy="7" r="4" />
-              <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
-            </svg>            
-          </a>
+  <div class="flex justify-between static	">
+      <div class="bg-green-200 h-28 w-96">
+        <div id="personInfo" class="text-white text-xl font-bold">
+            <a href="#" class="cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" class="ic
+                on icon-tabler icon-tabler-user block m-auto" width="58" height="58" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <circle cx="12" cy="7" r="4" />
+                <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+              </svg>
+              Id: <span id="idsocket"></span>       
+            </a>
+        </div>
       </div>
-    </div>
-    <div id="message-container" class="absolute inset-x-0  h-16"></div>
-      <form id="send-container" class="absolute inset-x-0 bottom-0 h-16">
-        <input type="text" id="message-input" class="border-4 w-48 h-18">
-        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-3" type="submit" id="send-button"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-send" width="34" height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
-          <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-          <line x1="10" y1="14" x2="21" y2="3" />
-          <path d="M21 3l-6.5 18a0.55 .55 0 0 1 -1 0l-3.5 -7l-7 -3.5a0.55 .55 0 0 1 0 -1l18 -6.5" />
-        </svg></button>
-      </form>
+      <div id="message-container" class=" inset-x-0  h-screen w-full">
+        <div class="flex justify-center">
+          <form id="send-container" class="block m-auto fixed bottom-0 mb-7">
+            <input type="text" id="message-input" class="border-4 h-18">
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-3" type="submit" id="send-button"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-send" width="34" height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+              <line x1="10" y1="14" x2="21" y2="3" />
+              <path d="M21 3l-6.5 18a0.55 .55 0 0 1 -1 0l-3.5 -7l-7 -3.5a0.55 .55 0 0 1 0 -1l18 -6.5" />
+            </svg></button>
+          </form>
+        </div>
+        
+       </div>
+
   </div>
+
+  <script
+  src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.2/qs.min.js"
+  integrity="sha256-TDxXjkAUay70ae/QJBEpGKkpVslXaHHayklIVglFRT4="
+  crossorigin="anonymous"
+></script>
   <script src="/socket.io/socket.io.js"></script>
 
 </body>

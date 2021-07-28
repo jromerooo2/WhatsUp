@@ -2,46 +2,52 @@ const socket = io('http://localhost:3000');
 const messageContainer = document.getElementById('message-container');
 const messageForm = document.getElementById('send-container');
 const messageInput = document.getElementById('message-input');
-const username = prompt("Please Provide a Name");
+
 
 appendMessage("You just joined the room, say Hi!")
 
 //SOCKETS EVENTS
-socket.emit('new-user', username)
 
-socket.on('user-connected', name => {   
-    if (name === null) {
-        name = "Guest"
-    }
-    newUser(`${name} just joined!, say hi`);        
+socket.on('user-connected', (name, id) => {   
+    newUser(name + " just joined!, say hi✌" + id);        
 });
 
 socket.on('chat-message', (data, name) => { 
-    if (name === null) {
-        name = "Guest"
-    }
         deleteAlert();       
             appendMessage(name+": "+data);
                   
 });
 
 socket.on('someone-typing', (username) =>{
-    if (username === null) {
-        username = "Guest"
-    }
     appendAlert(username);
 });
 
 
 //FUNCTIONS AND HTML EVENTS 
+
+
 messageInput.addEventListener('keydown', ()=>{ 
-    socket.emit('someone-typing', username)
+
+    let params = new URLSearchParams(document.location.search.substring(1));
+    var userMessage = params.get("username")
+
+    if (!userMessage) {
+        userMessage = "Guest"
+    }
+    socket.emit('someone-typing', userMessage)
 });
 
 messageForm.addEventListener('submit', e=>{
+    let params = new URLSearchParams(document.location.search.substring(1));
+
+    var userMessage = params.get("username")
+    if (!userMessage) {
+        userMessage = "Guest"
+    }
+
     e.preventDefault()
     const message = messageInput.value;
-    socket.emit('send-chat-message', message, username)
+    socket.emit('send-chat-message', message, userMessage)
 
     appendMessage(message)
     messageInput.value = '';
@@ -77,8 +83,11 @@ function deleteAlert(){
 
 function newUser(name){
     const messageElement = document.createElement('div');
-    messageElement.style.backgroundColor = "green";
-    messageElement.style.color = "#fff"; 
+    messageElement.style.display ="block"
+    messageElement.style.margin ="auto"
+    messageElement.style.width = "50%"
+    messageElement.style.backgroundColor = "#047857";
+    messageElement.style.color = "#FFF"; 
     messageElement.innerText = name;
     messageContainer.append(messageElement);
 }

@@ -10,6 +10,6 @@
         "nodemon": "^2.0.12"
     },
     "scripts": {
-        "watch": "nodemon ./index.js"
+        "watch": "nodemon ./server.js"
     }
 }
