@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsUp - Login</title>
+    <script defer src="http://localhost:3000/socket.io/socket.io.js"></script>
+    <script defer src="../script.js"></script>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+    </style>
+<body class="bg-no-repeat" style="background-image: url(http://localhost:3000/blob); background-size: 700px;">
+            <div class="flex flex-col p-2 h-screen relative z-20">
+    
+                <div class="max-w-md m-auto">
+                    <h1 class="text-7xl text-center text-green-300 " style="font-family: 'Righteous', cursive;">Whats Up?</h1>
+                    <p class="text-2xl text-center mt-2">Sign in to Get your Unique ID and start chatting 🖖.</p>
+                    <div class=" p-5 my-5 rounded">
+                      <div>
+                          <div class="flex">
+                            <label class="block mb-2 mr-2">Username</label>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                <circle cx="12" cy="7" r="4" />
+                                <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                              </svg>
+                          </div>
+                        
+                        <input
+                          type="text"
+                          class="border rounded py-2 px-3 w-full focus:outline-none focus:shadow-outline"
+                        />
+                      </div>
+                      <div class="py-2">
+                          <div class="flex justify-space-between">
+                            <label class="block mb-2">Password</label>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eye mt-1 ml-2" width="18" height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                <circle cx="12" cy="12" r="2" />
+                                <path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7" />
+                              </svg>
+                          </div>
+        
+                        <input
+                          type="password"
+                          class="border rounded py-2 px-3 w-full focus:outline-none focus:shadow-outline"
+                        />
+                      </div>
+                      <div class="py-2">
+                        <button
+                            type="button"
+                            class="w-full rounded-full text-black bg-transparent hover:text-white hover:bg-green-400 py-2 px-4 border-solid border-2 border-green-400">
+                          Login
+                        </button>
+                      </div>
+                    </div>
+        
+                </div>
+            </div>
+  
+
+
+    
+</body>
+</html>

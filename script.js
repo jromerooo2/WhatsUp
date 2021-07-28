@@ -9,20 +9,20 @@ appendMessage("You just joined the room, say Hi!")
 //SOCKETS EVENTS
 socket.emit('new-user', username)
 
-socket.on('user-connected', name => {
+socket.on('user-connected', name => {   
     if (name === null) {
         name = "Guest"
     }
-    
     newUser(`${name} just joined!, say hi`);        
 });
 
-socket.on('chat-message', (data, name) => {
+socket.on('chat-message', (data, name) => { 
     if (name === null) {
         name = "Guest"
     }
-        deleteAlert();
-        appendMessage(name+": "+data);          
+        deleteAlert();       
+            appendMessage(name+": "+data);
+                  
 });
 
 socket.on('someone-typing', (username) =>{
@@ -34,7 +34,7 @@ socket.on('someone-typing', (username) =>{
 
 
 //FUNCTIONS AND HTML EVENTS 
-messageInput.addEventListener('keydown', ()=>{    
+messageInput.addEventListener('keydown', ()=>{ 
     socket.emit('someone-typing', username)
 });
 
@@ -58,16 +58,20 @@ function appendAlert(username){
     messageElement.setAttribute("id", "div-text-gray");
     if (!document.getElementById("div-text-gray")) 
     {
-        messageElement.classList.add('text-gray-500')
+        messageElement.classList.add('animate-pulse')       
         messageElement.innerText = username +" is typing...";
         messageContainer.append(messageElement);
     }
+    else{
+        document.getElementById("div-text-gray").style.display = "block";
+    }
+
 }
 
 function deleteAlert(){
     if (document.getElementById("div-text-gray")) 
     {
-        document.getElementById("div-text-gray").style.display = "none";
+        document.getElementById("div-text-gray").remove();
     }
 }
 
