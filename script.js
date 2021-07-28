@@ -21,6 +21,7 @@ socket.on('chat-message', (data, name) => {
     if (name === null) {
         name = "Guest"
     }
+        deleteAlert();
         appendMessage(name+": "+data);          
 });
 
@@ -33,7 +34,7 @@ socket.on('someone-typing', (username) =>{
 
 
 //FUNCTIONS AND HTML EVENTS 
-messageInput.addEventListener('focus', ()=>{    
+messageInput.addEventListener('keydown', ()=>{    
     socket.emit('someone-typing', username)
 });
 
@@ -44,7 +45,6 @@ messageForm.addEventListener('submit', e=>{
 
     appendMessage(message)
     messageInput.value = '';
-
 });
 
 function appendMessage(message){
@@ -56,12 +56,19 @@ function appendMessage(message){
 function appendAlert(username){
     const messageElement = document.createElement('p');
     messageElement.setAttribute("id", "div-text-gray");
-    if (!document.getElementById("div-text-gray")) {
+    if (!document.getElementById("div-text-gray")) 
+    {
         messageElement.classList.add('text-gray-500')
         messageElement.innerText = username +" is typing...";
         messageContainer.append(messageElement);
     }
+}
 
+function deleteAlert(){
+    if (document.getElementById("div-text-gray")) 
+    {
+        document.getElementById("div-text-gray").style.display = "none";
+    }
 }
 
 function newUser(name){
