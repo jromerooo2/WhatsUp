@@ -8,7 +8,7 @@
     margin: 10px auto;
 }
 
-#button-how-works:hover{
+#button-how-works{
     color: #FBBF24;
 }
 #buttonCreate:hover + #icon{
