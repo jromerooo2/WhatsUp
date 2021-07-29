@@ -34,7 +34,6 @@ socket.on('someone-typing', (username) =>{
 
 //FUNCTIONS AND HTML EVENTS 
 
-
 messageInput.addEventListener('keydown', ()=>{ 
 
     let params = new URLSearchParams(document.location.search.substring(1));
