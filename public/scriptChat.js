@@ -3,18 +3,27 @@ const messageContainer = document.getElementById('message-container');
 const messageForm = document.getElementById('send-container');
 const messageInput = document.getElementById('message-input');
 
-
 appendMessage("You just joined the room, say Hi!")
 
 //SOCKETS EVENTS
+var url = window.location.href;
+var searchUrl = new URL(url);
+const username = searchUrl.searchParams.get("username")
 
-socket.on('user-connected', (name, id) => {   
-    newUser(name + " just joined!, say hi✌" + id);        
+socket.emit('someone-join', (username))
+
+socket.on('user-id', (id)=>{
+    document.getElementById('input-id').value = id;    
+});
+
+socket.on('user-connected', (name, id) => {
+    newUser(name + " just joined!, say hi✌");
+    
 });
 
 socket.on('chat-message', (data, name) => { 
-        deleteAlert();       
-            appendMessage(name+": "+data);
+        deleteAlert();     
+            appendMessage(name + ": "+data);
                   
 });
 
@@ -55,6 +64,7 @@ messageForm.addEventListener('submit', e=>{
 
 function appendMessage(message){
     const messageElement = document.createElement('div');
+    messageElement.setAttribute("id", "message-div");
     messageElement.innerText = message;
     messageContainer.append(messageElement);
 }
@@ -84,10 +94,17 @@ function deleteAlert(){
 function newUser(name){
     const messageElement = document.createElement('div');
     messageElement.style.display ="block"
-    messageElement.style.margin ="auto"
-    messageElement.style.width = "50%"
+    messageElement.setAttribute("id", "new-user-div");
     messageElement.style.backgroundColor = "#047857";
     messageElement.style.color = "#FFF"; 
     messageElement.innerText = name;
     messageContainer.append(messageElement);
 }
+
+document.getElementById("copyButton").addEventListener("click", ()=> {
+        let input = $("#input-id");
+        input.select();
+        document.execCommand("Copy");
+        
+});
+

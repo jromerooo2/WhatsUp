@@ -1,0 +1,17 @@
+#message-div {
+    background-color: khaki;
+    width: 70%;
+    margin-top: 2px;
+    padding: 14px;
+    border-radius: 25px;
+    border-right: black;
+    display: block;
+    margin-top: 5px;
+}
+
+#new-user-div{
+    border-radius: 25px;
+    margin-top: 14px;
+    margin-left: 20%;
+    padding: 10px;
+}

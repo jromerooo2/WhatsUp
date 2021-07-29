@@ -1,5 +1,6 @@
 const { Socket } = require('dgram');
 const express = require('express');
+const path = require('path');
 const app = express();
 const http = require('http');
 const { SocketAddress } = require('net');
@@ -8,37 +9,30 @@ const { Server } = require("socket.io");
 const io = new Server(server);
 const bot = "MEEBEE6"
 
+//Main 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/html/index.html');
   });
 
-  app.get('/chats', (req, res) => {
+//Chats Route
+app.get('/chats', (req, res) => {
     res.sendFile(__dirname + '/html/chats.html');
   });
 
-  app.get('/blob', (req, res) => {
-    res.sendFile(__dirname + '/assets/bg-yellow.svg');
-  });
+//Static Files
+app.use(express.static(path.join(__dirname, 'public')));
 
-  app.get('/scriptChat', (req, res) => {
-    res.sendFile(__dirname + '/scriptChat.js');
-  });
-  app.get('/scriptJoin', (req, res) => {
-    res.sendFile(__dirname + '/scriptJoin.js');
-  });
-
-
-
+//Server-Side Socket.IO events
 io.on('connection', socket =>{
-  
-  socket.on('createRoom', (username) =>{
-        socket.broadcast.emit('user-connected', username, socket.id);              
+
+  socket.emit("user-id", (socket.id))
+  socket.on('someone-join', (username) =>{
+        socket.broadcast.emit('user-connected', username);
+        socket.emit              
     });
 
-
     socket.on('send-chat-message', (message, username) => {
-        socket.broadcast.emit('chat-message', message, username)   
-   
+        socket.broadcast.emit('chat-message', message, username)    
     });
 
     socket.on('someone-typing', (username)=>{
