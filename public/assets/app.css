@@ -1,14 +1,16 @@
 #message-div {
     background-color: khaki;
     width: 70%;
-    margin-top: 2px;
     padding: 14px;
     border-radius: 25px;
     border-right: black;
     display: block;
-    margin-top: 5px;
+    margin: 10px auto;
 }
 
+#buttonCreate:hover + #icon{
+    stroke: white;
+}
 #new-user-div{
     border-radius: 25px;
     margin-top: 14px;

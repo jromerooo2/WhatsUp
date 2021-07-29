@@ -10,6 +10,10 @@ var url = window.location.href;
 var searchUrl = new URL(url);
 const username = searchUrl.searchParams.get("username")
 
+if (username === null) {
+    username = "Guest";
+}
+
 socket.emit('someone-join', (username))
 
 socket.on('user-id', (id)=>{
@@ -33,6 +37,8 @@ socket.on('someone-typing', (username) =>{
 
 
 //FUNCTIONS AND HTML EVENTS 
+
+
 
 messageInput.addEventListener('keydown', ()=>{ 
 
