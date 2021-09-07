@@ -3,6 +3,6 @@ A socket.io and nodejs discord-based chat app
 
 npm install to install dependencies
 
-npm run serve to run server
+npm run watch to run server
 
 enjoy!
